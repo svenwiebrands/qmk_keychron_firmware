@@ -18,6 +18,7 @@
 
 // Increase tapping term (which defines when is a button press a tap vs a hold)
 #define TAPPING_TERM 500
+
 // Enable permissive hold mode (see https://docs.qmk.fm/tap_hold)
 #define PERMISSIVE_HOLD
 
