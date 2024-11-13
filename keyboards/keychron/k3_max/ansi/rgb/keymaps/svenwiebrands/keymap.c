@@ -127,7 +127,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false;
     }
 
-    // DTOP_SWITCH should function like LT(DTOP, KC_D), while also emitting KC_F13 immediately when pressed
+    // DTOP_SWITCH should function like LT(DTOP, KC_D), while also emitting KC_F24 immediately when pressed
     switch (keycode) {
         case DTOP_SWITCH:
             if (record->event.pressed) {
@@ -135,11 +135,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 dtop_switch_key_pressed = true;
                 dtop_switch_hold_timer = timer_read();
                 dtop_switch_hold_mode = false;
-                register_code(KC_F13);
+                register_code(KC_F24);
             } else {
                 // DTOP_SWITCH key is released
                 dtop_switch_key_pressed = false;
-                unregister_code(KC_F13);
+                unregister_code(KC_F24);
 
                 if (!dtop_switch_hold_mode && timer_elapsed(dtop_switch_hold_timer) < TAPPING_TERM) {
                     // DTOP_SWITCH key was tapped
@@ -156,7 +156,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (dtop_switch_key_pressed && record->event.pressed) {
                 // DTOP_SWITCH key is pressed (held) and another key is pressed as well
                 dtop_switch_hold_mode = true;
-                register_code(KC_F13);
                 layer_on(DTOP);
             }
     }
